@@ -1,2 +1,128 @@
-<p>HOME</p>
-<p>VUE.JS</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LOLLAPALOOZA Bootstrap Vue.js</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+</div>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage">LOLLAPALOOZA</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#band">BAND</a></li>
+        <li><a href="login.html">LOGIN</a></li>
+        <li><a href="sign_up.html">SIGN UP</a></li>
+        <li><a href="https://www.lollapaloozaar.com/">OFICIAL PAGE</a></li>
+        <li><a href="https://www.facebook.com/ivy.s.rocabado">ABOUT ME</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">TICKETS
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://www.lollapaloozaar.com/pulseras/">Pulseras</a></li>
+            <li><a href="https://www.lollapaloozaar.com/tickets-faq/">Tickets FAQ</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div id="myCarousel" class="carousel slide" >
+    <div id="app">
+      <carousel-component>
+        <carousel-item>
+          <img src="twenty-one-pilots.png" alt="">
+        </carousel-item>
+        <carousel-item>
+          <img src="arctic-monkeys.jpg" alt="">
+        </carousel-item>
+        <carousel-item>
+          <img src="kendrick-lamar.jpg" alt="">
+        </carousel-item>
+        <carousel-item>
+          <img src="lollapalooza.png" alt="">
+        </carousel-item>
+      </carousel-component>
+    </div>
+    <script type="text/x-template" id="carousel-item-template">
+      <div class="carousel-item">
+        <slot></slot>
+      </div>
+    </script>
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      Vue.component('carousel-component', {
+        render: function (createElement) {
+          return createElement('div', { class: 'carousel-component' },
+            this.items.map((item, index) =>
+              createElement('div', {
+                'class': 'carousel-page' + (this.current === index ? ' active' : ''),
+                style: {
+                  transform: `translate3d(${this.position(index) * 100}%, 0, 0)`,
+                }
+              }, [item])
+            ).concat([
+              createElement('button', {
+                'class': 'carousel-nav-prev',
+                on: { click: () => { this.decreaseCurrent(); } }
+              }, 'Prev'),
+              createElement('button', {
+                'class': 'carousel-nav-next',
+                on: { click: () => { this.increaseCurrent(); } }
+              }, 'Next')
+            ])
+          );
+        },
+        data: function() {
+          return {
+            current: 0
+          };
+        },
+        computed: {
+          items: function() {
+            return this.$slots.default.filter(function(item) {
+              return item.componentOptions !== undefined &&
+                  item.componentOptions.tag === 'carousel-item';
+            });
+          }
+        },
+        methods: {
+          decreaseCurrent: function() {
+            this.current += this.items.length - 1;
+            this.current %= this.items.length;
+          },
+          increaseCurrent: function() {
+            this.current += 1;
+            this.current %= this.items.length;
+          },
+          position: function(index) {
+            if (index === this.current) return 0;
+            if (index === (this.current + 1) % this.items.length) return 1;
+            return -1;
+          }
+        }
+      });
+      Vue.component('carousel-item', {
+        template: '#carousel-item-template',
+      });
+      new Vue({
+        el: '#app'
+      });
+    </script>
+</body>
+</html>
