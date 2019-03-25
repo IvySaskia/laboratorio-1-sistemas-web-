@@ -1,0 +1,123 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+#fondo {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: url('./fondo.jpg') no-repeat center;
+    background-size: cover;
+}
+
+#fondo_container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(147, 171, 173, .9);
+    /*        filter: blur(5px);*/
+}
+
+#container {
+    height: 450px;
+    width: 300px;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    /*    opacity: .4;*/
+    position: absolute;
+    /*    background-color: black;*/
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 500px) {
+    #container {
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+#titulo {
+    text-align: center;
+}
+
+.boton {
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    line-height: 40px;
+    text-align: center;
+    cursor:pointer;
+}
+
+#boton_accept {
+    background-color: #F24E86;
+    padding: 5px 10px;
+}
+
+#boton_cancel {
+    /*    background-color: red;*/
+    /*    padding: 0 0px;*/
+}
+
+#botones {
+    height: 100px;
+    width: calc(100% - 40px);
+    margin: 0 20px;
+    /*    background-color: green;*/
+    display: flex;
+    justify-content: space-between;
+}
+
+#formulario_sign_up {
+    height: auto;
+    width: calc(100% - 40px);
+    text-align: left;
+    padding: 20px;
+    /*    background-color: blue;*/
+}
+
+#formulario_sign_up > input {
+    width: 100%;
+    height: 30px;
+    background-color: transparent;
+    border: solid 0px;
+    border-bottom: solid 1px rgba(255, 255, 255, .4);
+    color: white;
+}
+
+#formulario_sign_up > input:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, .5);
+    opacity: 1;
+}
+
+.label {
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#container_content {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /*    background-color: red;*/
+}
+
+#perm_identity {
+    margin: 10px;
+    font-size: 35px;
+}
+
+#title {
+    padding-left: 20px;
+    font-size: 35px;
+}
